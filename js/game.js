@@ -107,8 +107,11 @@ function gameOver(){
     });
 
     if(windowSize < 960){
-        $("h1").text("Game Over, Press button to Restart");
-        $("#phone-start-game").show();
+        $("h1").text("Game Over, wait 3 seconds to play a new game");
+        setTimeout(function(){
+            location.reload();
+        },3000);
+     
     }else{
         $("h1").text("Game Over, Press Any Key to Restart");
     }
