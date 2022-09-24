@@ -4,7 +4,32 @@ var userClickedPattern = [];
 var level = 0;
 var userClicked = 0;
 var isGameOver = false;
+const windowSize = $(window).width();
+console.log(windowSize);
 console.log("level : "+level);
+
+$(document).ready(function (e) {
+    if(windowSize < 960){
+        $("h1").text("Press Button Key to Start");
+        $("#phone-start-game").show();
+    }else{
+        $("#level-title").show();
+        $("#phone-start-game").hide();
+    }
+});
+
+$("#startGame").click(function(e){
+    if(isGameOver===true){
+        $("#level-title").show();
+        $("#startGame").hide();
+        startOver();
+    }else {
+        $("#level-title").show();
+        $("#startGame").hide();
+        nextSequence();
+    }
+});
+
 $(document).keydown(function(e){
     if(isGameOver===true){
         startOver();
@@ -80,7 +105,13 @@ function gameOver(){
         $(this).removeClass("game-over");
         next();
     });
-    $("h1").text("Game Over, Press Any Key to Restart");
+
+    if(windowSize < 960){
+        $("h1").text("Game Over, Press button to Restart");
+        $("#phone-start-game").show();
+    }else{
+        $("h1").text("Game Over, Press Any Key to Restart");
+    }
 }
 
 function startOver() 
